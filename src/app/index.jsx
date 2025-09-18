@@ -1,8 +1,8 @@
-// pages/index.js (or app/page.js for App Router)
+'use client';
 import { useState } from 'react';
-import styles from '../styles/Home.module.css';
+import styles from './styles/Home.module.css';
 
-export default function Home() {
+export default function Body() {
   const [requirements, setRequirements] = useState([]);
   const [currentRequirement, setCurrentRequirement] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
@@ -43,11 +43,11 @@ export default function Home() {
       formData.append('document', selectedFile);
       formData.append('requirements', JSON.stringify(requirements));
 
-      const response = await fetch('/api/process-document', {
+      const response = await fetch('api/process-document', {
         method: 'POST',
         body: formData,
       });
-
+      console.log(response);
       const data = await response.json();
       
       if (response.ok) {

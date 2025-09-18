@@ -1,0 +1,2 @@
+inspect_ai
+google-genai
