@@ -53,7 +53,7 @@ export async function POST(request) {
     console.log('File saved to:', filePath);
     
     // Check if Python script exists
-    const scriptPath = path.join(process.cwd(), 'scripts', 'process_document.py');
+    const scriptPath = path.join(process.cwd(), 'src', 'app', 'scripts', 'process_document.py');
     if (!existsSync(scriptPath)) {
       console.error('Python script not found at:', scriptPath);
       // Clean up the uploaded file
@@ -69,8 +69,8 @@ export async function POST(request) {
       scriptPath,
       filePath,
       JSON.stringify(requirements),
-      fileName
     ];
+    console.log('Executing Python script with args:', pythonArgs);
     
     // Execute Python script
     const result = await executePythonScript(pythonArgs);

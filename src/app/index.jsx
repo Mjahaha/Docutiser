@@ -43,11 +43,11 @@ export default function Body() {
       formData.append('document', selectedFile);
       formData.append('requirements', JSON.stringify(requirements));
 
+      console.log(JSON.stringify(requirements));
       const response = await fetch('api/process-document', {
         method: 'POST',
         body: formData,
       });
-      console.log(response);
       const data = await response.json();
       
       if (response.ok) {
