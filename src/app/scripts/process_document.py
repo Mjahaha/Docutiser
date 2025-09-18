@@ -19,11 +19,8 @@ Requirement: {requirement}
 
 Think step by step, then finish your answer with ANSWER: True or ANSWER: False."""
 
-INSPECT_EVAL_MODEL='google/gemini-2.5-flash-lite'
-GOOGLE_API_KEY="AIzaSyBxWH5jbtPSG-xZMTB-XBAAwA6ajEIMT50"
-
 async def check_for_requirement(document: str, requirement: str) -> bool:
-    model = get_model(model=INSPECT_EVAL_MODEL, api_key=GOOGLE_API_KEY)
+    model = get_model(model=os.getenv("INSPECT_EVAL_MODEL"), api_key=os.getenv("GOOGLE_API_KEY"))
     result = await model.generate(PROMPT_TEMPLATE.format(document=document, requirement=requirement))
     answer = result.completion
     return answer.strip().endswith("ANSWER: True")
