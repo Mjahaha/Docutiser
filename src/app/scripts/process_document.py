@@ -3,13 +3,6 @@ import json
 import os
 from inspect_ai.model import get_model
 
-letter_text = "Dear Hugh Jackman,\n\nYour portrayal of Wolverine across so many films is legendary. You truly embodied the character's gruff exterior and underlying humanity, making him unforgettable. No one else could have brought such depth and raw power to Logan, and it's a performance that will stand the test of time.\n\nI remember seeing *The Greatest Showman* in theaters with my family, and the joy and inspiration it brought us was truly palpable. We left the cinema buzzing, and the soundtrack became a permanent fixture in our home. Your powerful singing voice is simply astounding; the sheer emotion and control you bring to every musical performance are breathtaking and a true gift.\n\nWhile I've admired so much of your work, I must confess that your performance in *Van Helsing* always left me a little disappointed. I felt the character, despite your efforts, never quite reached the potential I knew you were capable of, and the film itself didn't quite capture your full range.\n\nBeyond your professional achievements, it's always inspiring to see the dedication you show to your family. It's clear that being a good husband and father is incredibly important to you, and that resonates deeply. Your highly acclaimed performance in *Les Mis\u00e9rables*, which garnered such significant industry recognition, showcased a profound depth that truly moved audiences.\n\nI often find myself wondering what incredible project you'll tackle next, and I hold a quiet hope that our paths might one day cross, even for a fleeting moment, to express this appreciation in person.\n\nSincerely, Your fan"
-letter_requirements = [
-    "The letter must be addressed to Hugh Jackman.",
-    "The letter must mention Wolverine.",
-    "The letter must mention Jay Baileys drinking habi"
-    ]
-
 PROMPT_TEMPLATE = """
 Analyze the following document and determine if it meets the specified requirement.
 
@@ -26,14 +19,12 @@ async def check_for_requirement(document: str, requirement: str) -> bool:
     return answer.strip().endswith("ANSWER: True")
 
 
-async def process_document(file_path, requirements):
-    """
-    Process the document with the given requirements.
+async def use_ai_to_assess_document_against_requirements(file_path, requirements):
+    """Process the document with the given requirements.
     
     Args:
         file_path (str): Path to the uploaded file
-        requirements (list): List of requirement strings
-        file_name (str): Original name of the uploaded file
+        requirements (list): List of requirements to check against the document
     
     Returns:
         str: Processing results
@@ -58,24 +49,37 @@ async def process_document(file_path, requirements):
     except Exception as e:
         return f"Error processing document: {str(e)}"
 
+
+
 async def main():
+    '''Validate system inputs and run the function to assess the requirements
+
+    Returns:
+        It prints the results to be captured by the stdout of the calling process, meaning its returned to the route handler
+    '''
+
+    # Validate and store system inputs 
     if len(sys.argv) != 3:
         print("Error: Expected 2 arguments")
         print("Usage: python process_document.py <file_path> <requirements_json>")
         sys.exit(1)
-    
     file_path = sys.argv[1]
     requirements_json = sys.argv[2]
 
+    # Parse requirements JSON
     try:
         requirements = json.loads(requirements_json)
     except json.JSONDecodeError as e:
         print(f"Error parsing requirements JSON: {e}")
         sys.exit(1)
     
-    result = await process_document(file_path, requirements)
+    # Call the function to assess the document
+    result = await use_ai_to_assess_document_against_requirements(file_path, requirements)
+    # Printing returns the result to the route handler
     print(result)
 
+
+# This function runs this whole bad boy
 if __name__ == "__main__":
     import asyncio
     asyncio.run(main())
