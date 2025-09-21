@@ -2,12 +2,13 @@
 import { useState } from 'react';
 
 export default function Body() {
-  const [requirements, setRequirements] = useState([]);
-  const [currentRequirement, setCurrentRequirement] = useState('');
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [result, setResult] = useState(null);
+  const [requirements, setRequirements] = useState([]);             // The list of user-defined requirements
+  const [currentRequirement, setCurrentRequirement] = useState(''); // The current requirement being typed by the user
+  const [selectedFile, setSelectedFile] = useState(null);           // The uploaded document file
+  const [isProcessing, setIsProcessing] = useState(false);          // Indicates if the document is being processed
+  const [result, setResult] = useState(null);                       // The result from the backend after processing
 
+  // Function to add a new requirement to the list
   const addRequirement = () => {
     if (currentRequirement.trim()) {
       setRequirements([...requirements, currentRequirement.trim()]);
@@ -15,15 +16,18 @@ export default function Body() {
     }
   };
 
+  // Function to remove a requirement from the list by index
   const removeRequirement = (index) => {
     setRequirements(requirements.filter((_, i) => i !== index));
   };
 
+  // Function to handle file input changes
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
   };
 
+  // Function to process the document with the given requirements
   const processDocument = async () => {
     if (!selectedFile || requirements.length === 0) {
       alert('Please select a file and add at least one requirement');
@@ -88,6 +92,7 @@ export default function Body() {
             <div className="mt-4">
               <h3 className="font-medium mb-2">Current Requirements:</h3>
               <ul className="space-y-2">
+                {/* This method maps each requirement to a list item */}
                 {requirements.map((req, index) => (
                   <li
                     key={index}
