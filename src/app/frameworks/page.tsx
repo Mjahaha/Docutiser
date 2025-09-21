@@ -13,18 +13,20 @@ export default function Frameworks() {
       <h1 className="text-center text-xl font-bold">Frameworks</h1>
 
       <ul className="border p-4 space-y-2">
-        <li className="flex justify-between">
-          <span>Framework A</span>
-          <div className="space-x-2">
-            <button>Edit</button>
-            <button>Delete</button>
+        <li className="flex justify-between m-5">
+          <span>Fan Letter 1</span>
+          <span>Hugh Jackman Letter Assessment</span>
+          <div>
+            <Link href="/assessments/details" className="border px-4 py-2 mx-4">View</Link>
+            <Link href="#" className="border px-4 py-2">Delete</Link>
           </div>
         </li>
-        <li className="flex justify-between">
-          <span>Framework B</span>
-          <div className="space-x-2">
-            <button>Edit</button>
-            <button>Delete</button>
+        <li className="flex justify-between m-5">
+          <span>Fan Letter 2</span>
+          <span>Hugh Jackman Letter Assessment</span>
+          <div>
+            <Link href="/assessments/details" className="border px-4 py-2 mx-4">View</Link>
+            <Link href="#" className="border px-4 py-2">Delete</Link>
           </div>
         </li>
       </ul>

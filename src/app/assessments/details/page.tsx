@@ -11,7 +11,14 @@ export default function AssessmentDetail() {
       <div className="border p-4">
         <p><strong>Name:</strong> My Document</p>
         <p><strong>Description:</strong> Auto generated description</p>
-        <p><strong>Framework:</strong> Framework A</p>
+        <p><strong>Framework:</strong> Hugh Jackman Letter Assessment</p>
+      </div>
+
+      <div className="space-y-2">
+        <h2 className="font-semibold">Summary</h2>
+        <p>
+          The document was up to par in several areas ....
+        </p>
       </div>
 
       <div className="space-y-2">
@@ -29,8 +36,7 @@ export default function AssessmentDetail() {
       </div>
 
       <div className="flex space-x-2">
-        <button className="border px-4 py-2">Save</button>
-        <button className="border px-4 py-2">Export</button>
+        <button className="border px-4 py-2">Re-assess</button>
       </div>
     </div>
   );
