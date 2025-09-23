@@ -1,39 +1,6 @@
 import Link from "next/link";
-import path from 'path';
-import fs from 'fs/promises';
-
-interface AssessmentResult {
-  requirement_id: number;
-  requirement_name: string;
-  passed: boolean;
-}
-
-interface Assessment {
-  id: number;
-  name: string;
-  description: string;
-  framework: string;
-  summary: string;
-  results: AssessmentResult[];
-}
-
-// TODO: Get this from db when db is ready
-async function getAssessment(id: number): Promise<Assessment> {
-  // Read the JSON file
-  const filePath = path.join(process.cwd(), 'src', 'app', 'assessments', 'details', 'assessment_test_data.json');
-  const fileContents = await fs.readFile(filePath, 'utf8');
-  const assessments: Assessment[] = JSON.parse(fileContents);
-  
-  // Find the assessment with the matching id
-  const assessment = assessments.find(a => a.id === id);
-  
-  if (!assessment) {
-    throw new Error(`Assessment with id ${id} not found`);
-  }
-  return assessment;
-}
-
 import { notFound } from "next/navigation";
+import { getAssessment } from "@/utils/assessments";
 
 export default async function AssessmentDetail({params,}: { params: { assessment_id: string } }) 
 {

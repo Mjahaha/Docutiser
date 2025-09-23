@@ -1,10 +1,10 @@
 [
   {
     "id": 1,
-    "name": "My Document",
-    "description": "Auto generated description",
+    "name": "Assessment 1",
+    "description": "Description for assessment 1",
     "framework": "Hugh Jackman Letter Assessment",
-    "summary": "The document was up to par in several areas ....",
+    "summary": "The document was up to par in several areas such as ....",
     "results": [
       {
         "requirement_id": 1,
@@ -20,8 +20,8 @@
   },
   {
     "id": 2,
-    "name": "Q4 Performance Review",
-    "description": "Quarterly assessment of team deliverables",
+    "name": "Assessment 2",
+    "description": "Description for assessment 2",
     "framework": "Hugh Jackman Letter Assessment",
     "summary": "Strong performance in communication areas with room for improvement in technical specifications ....",
     "results": [
