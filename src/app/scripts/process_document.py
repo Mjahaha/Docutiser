@@ -4,22 +4,34 @@ import os
 from inspect_ai.model import get_model
 
 PROMPT_TEMPLATE = """
-Analyze the following document and determine if it meets the specified requirement.
+Analyze the following document and determine if it meets each of the specified requirements.
 
 Document: {document}
 
-Requirement: {requirement}
+Requirements: 
+{requirements}
 
-Think step by step, then finish your answer with ANSWER: True or ANSWER: False."""
+Think step by step, then for each requirement, write Requirement N: True or Requirement N: False, where N is the requirement number."""
 
-async def check_for_requirement(document: str, requirement: str) -> bool:
+
+async def check_for_requirements(document: str, requirements: list[str]) -> dict[str, bool]:
     model = get_model(model=os.getenv("INSPECT_EVAL_MODEL"), api_key=os.getenv("GOOGLE_API_KEY"))
-    result = await model.generate(PROMPT_TEMPLATE.format(document=document, requirement=requirement))
+    requirements_text = "\n".join([f"{i+1}. {req}" for i, req in enumerate(requirements)])
+    prompt = PROMPT_TEMPLATE.format(document=document, requirements=requirements_text)
+    result = await model.generate(prompt)
     answer = result.completion
-    return answer.strip().endswith("ANSWER: True")
+    results = {}
+    for i, req in enumerate(requirements):
+        if f"Requirement {i+1}: True" in answer:
+            results[req] = True
+        elif f"Requirement {i+1}: False" in answer:
+            results[req] = False
+        else: # TODO: Figure out what to do if the model doesn't answer correctly.
+            raise Exception(f"Could not determine result for requirement {i+1}")
+    return results
 
 
-async def use_ai_to_assess_document_against_requirements(file_path, requirements):
+async def use_ai_to_assess_document_against_requirements(file_path: str, requirements: list[str], num_requirements: int = 1) -> dict[str, bool]:
     """Process the document with the given requirements.
     
     Args:
@@ -27,7 +39,7 @@ async def use_ai_to_assess_document_against_requirements(file_path, requirements
         requirements (list): List of requirements to check against the document
     
     Returns:
-        str: Processing results
+        results (dict[str, bool]): Dictionary of requirement names to boolean values indicating if each requirement is met.
     """
     try:
         # Check if file exists
@@ -36,14 +48,14 @@ async def use_ai_to_assess_document_against_requirements(file_path, requirements
         
         # Basic file info
         results = {}
-        
-        # Process each requirement
-        for requirement in requirements:
+
+        # Process each set of requirements
+        for i in range(0, len(requirements), num_requirements):
             with open(file_path, 'r') as file:
                 document_content = file.read()
-            is_requirement_met = await check_for_requirement(document_content, requirement)
-            results[requirement] = is_requirement_met
-        
+            are_requirements_met = await check_for_requirements(document_content, requirements[i:i+num_requirements])
+            results.update(are_requirements_met)
+
         return results
         
     except Exception as e:
@@ -74,7 +86,7 @@ async def main():
         sys.exit(1)
     
     # Call the function to assess the document
-    result = await use_ai_to_assess_document_against_requirements(file_path, requirements)
+    result = await use_ai_to_assess_document_against_requirements(file_path, requirements, 5)
     # Printing returns the result to the route handler
     print(result)
 
