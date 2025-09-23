@@ -14,18 +14,18 @@ export default function Frameworks() {
 
       <ul className="border p-4 space-y-2">
         <li className="flex justify-between m-5">
-          <span>Fan Letter 1</span>
           <span>Hugh Jackman Letter Assessment</span>
+          <span>Assess the contents of a Hugh Jackman fan letter</span>
           <div>
-            <Link href="/assessments/details" className="border px-4 py-2 mx-4">View</Link>
+            <Link href="/frameworks/builder" className="border px-4 py-2 mx-4">View</Link>
             <Link href="#" className="border px-4 py-2">Delete</Link>
           </div>
         </li>
         <li className="flex justify-between m-5">
-          <span>Fan Letter 2</span>
-          <span>Hugh Jackman Letter Assessment</span>
+          <span>Framework 2</span>
+          <span>Framework to assess a document type</span>
           <div>
-            <Link href="/assessments/details" className="border px-4 py-2 mx-4">View</Link>
+            <Link href="/frameworks/builder" className="border px-4 py-2 mx-4">View</Link>
             <Link href="#" className="border px-4 py-2">Delete</Link>
           </div>
         </li>

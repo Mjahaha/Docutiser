@@ -4,7 +4,9 @@ export default function FrameworkBuilder() {
   return (
     <div className="p-8 space-y-8">
       <div>
-        <Link href="/assessments" className="border px-4 py-2">← Back to Frameworks</Link>
+        <Link href="/frameworks" className="border px-4 py-2">
+          ← Back to Frameworks
+        </Link>
       </div>
       <h1 className="text-center text-xl font-bold">Framework Builder</h1>
 
@@ -21,18 +23,35 @@ export default function FrameworkBuilder() {
       <div className="space-y-2">
         <h2 className="font-semibold">Requirements</h2>
         <ul className="border p-4 space-y-2">
-          <li className="flex justify-between">
+          <li className="flex justify-between items-center">
             <span>Requirement 1</span>
-            <button>Remove</button>
+            <div className="space-x-2">
+              <Link href="/frameworks/builder/requirements" className="border px-2 py-1">
+                View
+              </Link>
+              <Link href="/frameworks/builder/requirements" className="border px-2 py-1">
+                Edit
+              </Link>
+              <Link href="#" className="border px-2 py-1">
+                Remove
+              </Link>
+            </div>
           </li>
         </ul>
-        <div className="flex space-x-2">
-          <input className="border flex-1" placeholder="New requirement" />
-          <button className="border px-4">Add</button>
+
+        <div>
+          <Link
+            href="/frameworks/builder/requirements"
+            className="border px-4 py-2"
+          >
+            + Add Requirement
+          </Link>
         </div>
       </div>
 
-      <Link href="/frameworks" className="border px-4 py-2">Save Framework</Link>
+      <Link href="/frameworks" className="border px-4 py-2">
+        Save Framework
+      </Link>
     </div>
   );
 }
