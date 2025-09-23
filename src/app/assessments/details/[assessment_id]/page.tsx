@@ -6,7 +6,13 @@ export default async function AssessmentDetail({params,}: { params: { assessment
 {
   const id = Number(params.assessment_id);
   if (Number.isNaN(id)) notFound();
-  const assessment = await getAssessment(id);
+  let assessment;
+  try {
+    assessment = await getAssessment(id);
+  } catch (e) {
+    notFound();
+  }
+  if (!assessment) notFound();
 
   return (
     <div className="p-8 space-y-8">
