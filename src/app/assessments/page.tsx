@@ -16,7 +16,7 @@ export default function AssessmentHistory() {
           <span>Assessment 1</span>
           <span>Hugh Jackman Letter Assessment</span>
           <div>
-            <Link href="/assessments/details" className="border px-4 py-2 mx-4">View</Link>
+            <Link href="/assessments/details/1" className="border px-4 py-2 mx-4">View</Link>
             <Link href="#" className="border px-4 py-2">Delete</Link>
           </div>
         </li>
@@ -24,7 +24,7 @@ export default function AssessmentHistory() {
           <span>Assessment 2</span>
           <span>Hugh Jackman Letter Assessment</span>
           <div>
-            <Link href="/assessments/details" className="border px-4 py-2 mx-4">View</Link>
+            <Link href="/assessments/details/2" className="border px-4 py-2 mx-4">View</Link>
             <Link href="#" className="border px-4 py-2">Delete</Link>
           </div>
         </li>
