@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Hugh Jackman Letter Assessment",
+    "description": "Description for Hugh Jackman Letter Assessment",
+    "requirements": [
+      {
+        "requirement_id": 1,
+        "requirement_name": "Requirement 1"
+      },
+      {
+        "requirement_id": 2,
+        "requirement_name": "Requirement 2"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Framework 2",
+    "description": "Description for assessment 2",
+    "framework": "Framework to access a document type",
+    "requirements": [
+      {
+        "requirement_id": 1,
+        "requirement_name": "Requirement 1"
+      },
+      {
+        "requirement_id": 2,
+        "requirement_name": "Requirement 2"
+      },
+      {
+        "requirement_id": 3,
+        "requirement_name": "Requirement 3"
+      }
+    ]
+  }
+]
