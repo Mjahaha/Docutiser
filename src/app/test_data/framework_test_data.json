@@ -20,7 +20,6 @@
     "id": 2,
     "name": "Framework 2",
     "description": "Description for assessment 2",
-    "framework": "Framework to access a document type",
     "requirements": [
       {
         "requirement_id": 1,
