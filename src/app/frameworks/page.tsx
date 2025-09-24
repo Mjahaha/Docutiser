@@ -1,6 +1,23 @@
 import Link from "next/link";
+import { getFramework } from "@/utils/frameworks";
 
-export default function Frameworks() {
+export default async function Frameworks() {
+  const frameworks = [getFramework(1), getFramework(2)];
+  const frameworkData = await Promise.all(frameworks);
+
+  function renderFramework(framework: { id: number; name: string; description: string }) {
+    return (
+      <li key={framework.id} className="flex justify-between m-5">
+          <span>{framework.name}</span>
+          <span>{framework.description}</span>
+          <div>
+            <Link href={`/frameworks/details/${framework.id}`} className="border px-4 py-2 mx-4">View</Link>
+            <Link href="#" className="border px-4 py-2">Delete</Link>
+          </div>
+        </li>
+    );
+  }
+
   return (
     <div className="p-8 space-y-8">
       {/* Back button */}
@@ -13,22 +30,7 @@ export default function Frameworks() {
       <h1 className="text-center text-xl font-bold">Frameworks</h1>
 
       <ul className="border p-4 space-y-2">
-        <li className="flex justify-between m-5">
-          <span>Hugh Jackman Letter Assessment</span>
-          <span>Assess the contents of a Hugh Jackman fan letter</span>
-          <div>
-            <Link href="/frameworks/builder" className="border px-4 py-2 mx-4">View</Link>
-            <Link href="#" className="border px-4 py-2">Delete</Link>
-          </div>
-        </li>
-        <li className="flex justify-between m-5">
-          <span>Framework 2</span>
-          <span>Framework to assess a document type</span>
-          <div>
-            <Link href="/frameworks/builder" className="border px-4 py-2 mx-4">View</Link>
-            <Link href="#" className="border px-4 py-2">Delete</Link>
-          </div>
-        </li>
+        {frameworkData.map(renderFramework)}
       </ul>
 
       <Link href="/frameworks/builder" className="border px-4 py-2">
