@@ -11,7 +11,7 @@ export default async function Frameworks() {
           <span>{framework.name}</span>
           <span>{framework.description}</span>
           <div>
-            <Link href="/frameworks/builder" className="border px-4 py-2 mx-4">View</Link>
+            <Link href={`/frameworks/details/${framework.id}`} className="border px-4 py-2 mx-4">View</Link>
             <Link href="#" className="border px-4 py-2">Delete</Link>
           </div>
         </li>
