@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
       
         // Create new requirement from form.
         const requirement: Requirement = {
-            requirementId: requirements.length,
+            requirementId: requirements.length + 1,
             ...requirementData
         };
         requirements.push(requirement);
@@ -57,18 +57,5 @@ export async function POST(request: NextRequest) {
             { error: 'Failed to save requirement' },
             { status: 500 }
         );
-    }
-}
-
-export async function GET() {
-    try {
-        const filePath = path.join(process.cwd(), 'data', 'requirements.json');
-        const data = await fs.readFile(filePath, 'utf-8');
-        const requirements = JSON.parse(data);
-        
-        return NextResponse.json({ requirements });
-    } catch (error) {
-        // File doesn't exist or other error
-        return NextResponse.json({ requirements: [] });
     }
 }

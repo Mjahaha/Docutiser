@@ -31,3 +31,11 @@ export async function getAssessment(id: number): Promise<Assessment> {
   }
   return assessment;
 }
+
+export async function getAssessments(): Promise<Assessment[]> {
+  // Read the JSON file
+  const filePath = path.join(process.cwd(), 'src', 'app', 'test_data', 'assessment_test_data.json');
+  const fileContents = await fs.readFile(filePath, 'utf8');
+  const assessments: Assessment[] = JSON.parse(fileContents);
+  return assessments;
+}
