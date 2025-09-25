@@ -11,6 +11,21 @@ interface RequirementFormData {
     outputType: OutputType;
 }
 
+export async function GET() {
+    try {
+        const filePath = path.join(process.cwd(), 'src', 'app', 'test_data', 'requirement_test_data.json');
+        const data = await fs.readFile(filePath, 'utf-8');
+        const requirements: Requirement[] = JSON.parse(data);
+        return NextResponse.json(requirements);
+    } catch (error) {
+        console.error('Error fetching requirements:', error);
+        return NextResponse.json(
+            { error: 'Failed to fetch requirements' },
+            { status: 500 }
+        );
+    }
+}
+
 export async function POST(request: NextRequest) {
     try {
         const requirementData: RequirementFormData = await request.json();
@@ -45,21 +60,6 @@ export async function POST(request: NextRequest) {
         console.error('Error saving requirement:', error);
         return NextResponse.json(
             { error: 'Failed to save requirement' },
-            { status: 500 }
-        );
-    }
-}
-
-export async function GET() {
-    try {
-        const filePath = path.join(process.cwd(), 'src', 'app', 'test_data', 'requirement_test_data.json');
-        const data = await fs.readFile(filePath, 'utf-8');
-        const requirements: Requirement[] = JSON.parse(data);
-        return NextResponse.json(requirements);
-    } catch (error) {
-        console.error('Error fetching requirements:', error);
-        return NextResponse.json(
-            { error: 'Failed to fetch requirements' },
             { status: 500 }
         );
     }
