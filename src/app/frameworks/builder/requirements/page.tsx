@@ -1,6 +1,31 @@
+'use client';
+
+import { OutputType } from "@/app/api/requirements/route";
 import Link from "next/link";
+import { useState } from 'react';
+import { saveRequirement } from "@/utils/requirements";
 
 export default function RequirementEditor() {
+
+  const [formData, setFormData] = useState({
+    requirementName: '',
+    requirementDesc: '',
+    promptText: '',
+    supplementaryInfo: '',
+    outputType: 'boolean' as OutputType
+  });
+
+  const handleInputChange = (field) => (e) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: e.target.value
+    }));
+  };
+
+  const saveRequirementForm = () => {
+    saveRequirement(formData);
+  };
+
   return (
     <div className="p-8 space-y-8">
       <div>
@@ -19,7 +44,18 @@ export default function RequirementEditor() {
         <label className="block" title="A short title for this requirement">
           Title
         </label>
-        <input className="border w-full" placeholder="Requirement title" />
+        <input className="border w-full"    placeholder="Requirement title"
+          value={formData.requirementName} onChange={handleInputChange('requirementName')}
+        />
+      </div>
+
+      <div>
+        <label className="block" title="A brief description of this requirement">
+          Description
+        </label>
+        <input className="border w-full" placeholder="Requirement description"
+          value={formData.requirementDesc} onChange={handleInputChange('requirementDesc')}
+        />
       </div>
 
       <div>
@@ -32,6 +68,7 @@ export default function RequirementEditor() {
         <textarea
           className="border w-full"
           placeholder="Enter the exact check or question here"
+          value={formData.promptText} onChange={handleInputChange('promptText')}
         />
       </div>
 
@@ -45,6 +82,7 @@ export default function RequirementEditor() {
         <textarea
           className="border w-full"
           placeholder="Optional supporting info"
+          value={formData.supplementaryInfo} onChange={handleInputChange('supplementaryInfo')}
         />
       </div>
 
@@ -55,7 +93,7 @@ export default function RequirementEditor() {
         >
           Output Type
         </label>
-        <select className="border w-full">
+        <select className="border w-full" value={formData.outputType} onChange={handleInputChange('outputType')}>
           <option value="boolean">True / False</option>
           <option value="number">Whole Number</option>
           <option value="decimal">Decimal Number</option>
@@ -68,6 +106,7 @@ export default function RequirementEditor() {
       <div className="flex space-x-4">
         <Link
           href="/frameworks/builder"
+          onClick={saveRequirementForm}
           className="border px-4 py-2"
           title="Go back without saving"
         >

@@ -2,8 +2,8 @@ import path from 'path';
 import fs from 'fs/promises';
 
 interface AssessmentResult {
-  requirement_id: number;
-  requirement_name: string;
+  requirementId: number;
+  requirementName: string;
   passed: boolean;
 }
 

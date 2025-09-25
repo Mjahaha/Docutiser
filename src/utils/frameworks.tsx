@@ -2,9 +2,9 @@ import path from 'path';
 import fs from 'fs/promises';
 
 interface FrameworkRequirement {
-  requirement_id: number;
-  requirement_name: string;
-  requirement_desc: string;
+  requirementId: number;
+  requirementName: string;
+  requirementDesc: string;
 }
 
 interface Framework {

@@ -30,9 +30,9 @@ export default async function frameworkDetail({params,}: { params: { framework_i
         <h2 className="font-semibold">Results</h2>
         <ul className="border p-4 space-y-2">
           {framework.requirements.map((result) => (
-            <li key={result.requirement_id} className="flex justify-between">
-              <span>{result.requirement_name}</span>
-              <span>{result.requirement_desc}</span>
+            <li key={result.requirementId} className="flex justify-between">
+              <span>{result.requirementName}</span>
+              <span>{result.requirementDesc}</span>
             </li>
           ))}
         </ul>
