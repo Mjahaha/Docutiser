@@ -37,5 +37,28 @@
         "requirementDesc": "This is the description for requirement 3"
       }
     ]
+  },
+  {
+    "id": 3,
+    "name": "t",
+    "description": "t",
+    "requirements": [
+      {
+        "requirementId": 1,
+        "requirementName": "Requirement 1",
+        "requirementDesc": "This is the description for requirement 1",
+        "prompt_text": "Please evaluate the document based on requirement 1.",
+        "supplementaryInfo": "Additional context or guidelines for requirement 1.",
+        "outputType": "boolean"
+      },
+      {
+        "requirementId": 3,
+        "requirementName": "Requirement 3",
+        "requirementDesc": "This is the description for requirement 3",
+        "prompt_text": "Please evaluate the document based on requirement 3.",
+        "supplementaryInfo": "Additional context or guidelines for requirement 3.",
+        "outputType": "number"
+      }
+    ]
   }
 ]

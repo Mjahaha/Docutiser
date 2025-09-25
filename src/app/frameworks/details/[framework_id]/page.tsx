@@ -4,7 +4,8 @@ import { getFramework } from "@/utils/frameworks";
 
 export default async function frameworkDetail({params,}: { params: { framework_id: string } }) 
 {
-  const id = Number(params.framework_id);
+  const { framework_id } = await params;
+  const id = Number(framework_id);
   if (Number.isNaN(id)) notFound();
   let framework;
   try {
