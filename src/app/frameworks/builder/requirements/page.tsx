@@ -1,6 +1,6 @@
 'use client';
 
-import { OutputType } from "@/app/api/requirements/route";
+import { OutputType } from "@/utils/requirements";
 import Link from "next/link";
 import { useState } from 'react';
 
