@@ -1,6 +1,18 @@
+import path from 'path';
+import fs from 'fs/promises';
+
 export type OutputType = 'boolean' | 'number' | 'decimal' | 'date' | 'currency' | 'text';
 
 interface RequirementFormData {
+    requirementName: string;
+    requirementDesc: string;
+    promptText: string;
+    supplementaryInfo: string;
+    outputType: OutputType;
+}
+
+interface Requirement {
+    requirementId: number;
     requirementName: string;
     requirementDesc: string;
     promptText: string;
@@ -31,14 +43,25 @@ export async function saveRequirement(requirementData: RequirementFormData) {
     }
 }
 
-// Optional: Add function to get requirements
-export async function getRequirements() {
-    try {
-        const response = await fetch('/api/requirements');
-        const result = await response.json();
-        return result.requirements;
-    } catch (error) {
-        console.error('Error fetching requirements:', error);
-        return [];
-    }
+export async function getRequirement(id: number): Promise<Requirement> {
+  // Read the JSON file
+  const filePath = path.join(process.cwd(), 'src', 'app', 'test_data', 'requirement_test_data.json');
+  const fileContents = await fs.readFile(filePath, 'utf8');
+  const requirements: Requirement[] = JSON.parse(fileContents);
+
+  // Find the requirement with the matching id
+  const requirement = requirements.find(r => r.requirementId === id);
+
+  if (!requirement) {
+    throw new Error(`Requirement with id ${id} not found`);
+  }
+  return requirement;
+}
+
+export async function getRequirements(): Promise<Requirement[]> {
+  // Read the JSON file
+  const filePath = path.join(process.cwd(), 'src', 'app', 'test_data', 'requirement_test_data.json');
+  const fileContents = await fs.readFile(filePath, 'utf8');
+  const requirements: Requirement[] = JSON.parse(fileContents);
+  return requirements;
 }

@@ -7,7 +7,7 @@ interface FrameworkRequirement {
   requirementDesc: string;
 }
 
-interface Framework {
+export interface Framework {
   id: number;
   name: string;
   description: string;
