@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
       
         // Create new Framework from form.
         const framework: Framework = {
-            id: frameworks.length + 1,
+            id: Math.max(...frameworks.map(f => f.id), 0) + 1,
             ...frameworkData
         };
         frameworks.push(framework);
