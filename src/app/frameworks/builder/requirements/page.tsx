@@ -22,7 +22,9 @@ export default function RequirementEditor() {
     outputType: 'boolean' as OutputType
   });
 
-  const handleInputChange = (field) => (e) => {
+  const handleInputChange = (field: keyof RequirementFormData) => (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData(prev => ({
       ...prev,
       [field]: e.target.value
