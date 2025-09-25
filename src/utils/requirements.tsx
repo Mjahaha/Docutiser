@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 
 export type OutputType = 'boolean' | 'number' | 'decimal' | 'date' | 'currency' | 'text';
 
-interface Requirement {
+export interface Requirement {
     requirementId: number;
     requirementName: string;
     requirementDesc: string;

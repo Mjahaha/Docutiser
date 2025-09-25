@@ -1,17 +1,12 @@
 import path from 'path';
 import fs from 'fs/promises';
-
-interface FrameworkRequirement {
-  requirementId: number;
-  requirementName: string;
-  requirementDesc: string;
-}
+import { Requirement } from './requirements';
 
 export interface Framework {
   id: number;
   name: string;
   description: string;
-  requirements: FrameworkRequirement[];
+  requirements: Requirement[];
 }
 
 export async function getFramework(id: number): Promise<Framework> {

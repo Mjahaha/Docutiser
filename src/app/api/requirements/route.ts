@@ -1,15 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import fs from 'fs/promises';
-
-interface Requirement {
-    requirementId: number;
-    requirementName: string;
-    requirementDesc: string;
-    promptText: string;
-    supplementaryInfo: string;
-    outputType: OutputType;
-}
+import { OutputType, Requirement } from '@/utils/requirements';
 
 interface RequirementFormData {
     requirementName: string;
@@ -18,8 +10,6 @@ interface RequirementFormData {
     supplementaryInfo: string;
     outputType: OutputType;
 }
-
-export type OutputType = 'boolean' | 'number' | 'decimal' | 'date' | 'currency' | 'text';
 
 export async function POST(request: NextRequest) {
     try {
@@ -55,6 +45,21 @@ export async function POST(request: NextRequest) {
         console.error('Error saving requirement:', error);
         return NextResponse.json(
             { error: 'Failed to save requirement' },
+            { status: 500 }
+        );
+    }
+}
+
+export async function GET() {
+    try {
+        const filePath = path.join(process.cwd(), 'src', 'app', 'test_data', 'requirement_test_data.json');
+        const data = await fs.readFile(filePath, 'utf-8');
+        const requirements: Requirement[] = JSON.parse(data);
+        return NextResponse.json(requirements);
+    } catch (error) {
+        console.error('Error fetching requirements:', error);
+        return NextResponse.json(
+            { error: 'Failed to fetch requirements' },
             { status: 500 }
         );
     }

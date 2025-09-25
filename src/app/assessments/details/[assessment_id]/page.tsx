@@ -4,7 +4,8 @@ import { getAssessment } from "@/utils/assessments";
 
 export default async function AssessmentDetail({params,}: { params: { assessment_id: string } }) 
 {
-  const id = Number(params.assessment_id);
+  const { assessment_id } = await params;
+  const id = Number(assessment_id);
   if (Number.isNaN(id)) notFound();
   let assessment;
   try {
