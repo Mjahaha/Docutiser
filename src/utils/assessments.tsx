@@ -2,8 +2,8 @@ import path from 'path';
 import fs from 'fs/promises';
 
 interface AssessmentResult {
-  requirement_id: number;
-  requirement_name: string;
+  requirementId: number;
+  requirementName: string;
   passed: boolean;
 }
 
@@ -30,4 +30,12 @@ export async function getAssessment(id: number): Promise<Assessment> {
     throw new Error(`Assessment with id ${id} not found`);
   }
   return assessment;
+}
+
+export async function getAssessments(): Promise<Assessment[]> {
+  // Read the JSON file
+  const filePath = path.join(process.cwd(), 'src', 'app', 'test_data', 'assessment_test_data.json');
+  const fileContents = await fs.readFile(filePath, 'utf8');
+  const assessments: Assessment[] = JSON.parse(fileContents);
+  return assessments;
 }

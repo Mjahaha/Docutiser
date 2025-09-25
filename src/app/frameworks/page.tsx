@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { getFramework } from "@/utils/frameworks";
+import { getFrameworks } from "@/utils/frameworks";
 
 export default async function Frameworks() {
-  const frameworks = [getFramework(1), getFramework(2)];
-  const frameworkData = await Promise.all(frameworks);
+  const frameworkData = await getFrameworks();
 
   function renderFramework(framework: { id: number; name: string; description: string }) {
     return (

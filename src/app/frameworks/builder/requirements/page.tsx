@@ -1,6 +1,40 @@
+'use client';
+
+import { OutputType } from "@/app/api/requirements/route";
 import Link from "next/link";
+import { useState } from 'react';
+
+interface RequirementFormData {
+    requirementName: string;
+    requirementDesc: string;
+    promptText: string;
+    supplementaryInfo: string;
+    outputType: OutputType;
+}
 
 export default function RequirementEditor() {
+
+  const [formData, setFormData] = useState({
+    requirementName: '',
+    requirementDesc: '',
+    promptText: '',
+    supplementaryInfo: '',
+    outputType: 'boolean' as OutputType
+  });
+
+  const handleInputChange = (field: keyof RequirementFormData) => (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: e.target.value
+    }));
+  };
+
+  const saveRequirementForm = () => {
+    saveRequirement(formData);
+  };
+
   return (
     <div className="p-8 space-y-8">
       <div>
@@ -19,7 +53,18 @@ export default function RequirementEditor() {
         <label className="block" title="A short title for this requirement">
           Title
         </label>
-        <input className="border w-full" placeholder="Requirement title" />
+        <input className="border w-full"    placeholder="Requirement title"
+          value={formData.requirementName} onChange={handleInputChange('requirementName')}
+        />
+      </div>
+
+      <div>
+        <label className="block" title="A brief description of this requirement">
+          Description
+        </label>
+        <input className="border w-full" placeholder="Requirement description"
+          value={formData.requirementDesc} onChange={handleInputChange('requirementDesc')}
+        />
       </div>
 
       <div>
@@ -32,6 +77,7 @@ export default function RequirementEditor() {
         <textarea
           className="border w-full"
           placeholder="Enter the exact check or question here"
+          value={formData.promptText} onChange={handleInputChange('promptText')}
         />
       </div>
 
@@ -45,6 +91,7 @@ export default function RequirementEditor() {
         <textarea
           className="border w-full"
           placeholder="Optional supporting info"
+          value={formData.supplementaryInfo} onChange={handleInputChange('supplementaryInfo')}
         />
       </div>
 
@@ -55,7 +102,7 @@ export default function RequirementEditor() {
         >
           Output Type
         </label>
-        <select className="border w-full">
+        <select className="border w-full" value={formData.outputType} onChange={handleInputChange('outputType')}>
           <option value="boolean">True / False</option>
           <option value="number">Whole Number</option>
           <option value="decimal">Decimal Number</option>
@@ -68,6 +115,7 @@ export default function RequirementEditor() {
       <div className="flex space-x-4">
         <Link
           href="/frameworks/builder"
+          onClick={saveRequirementForm}
           className="border px-4 py-2"
           title="Go back without saving"
         >
@@ -83,4 +131,27 @@ export default function RequirementEditor() {
       </div>
     </div>
   );
+}
+
+export async function saveRequirement(requirementData: RequirementFormData) {
+    try {
+        const response = await fetch('/api/requirements', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requirementData),
+        });
+        
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('Failed to save requirement');
+        }
+        
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('Error saving requirement:', error);
+        throw error;
+    }
 }

@@ -1,0 +1,26 @@
+[
+  {
+    "requirementId": 1,
+    "requirementName": "Requirement 1",
+    "requirementDesc": "This is the description for requirement 1",
+    "prompt_text": "Please evaluate the document based on requirement 1.",
+    "supplementaryInfo": "Additional context or guidelines for requirement 1.",
+    "outputType": "boolean"
+  },
+  {
+    "requirementId": 2,
+    "requirementName": "Requirement 2",
+    "requirementDesc": "This is the description for requirement 2",
+    "prompt_text": "Please evaluate the document based on requirement 2.",
+    "supplementaryInfo": "Additional context or guidelines for requirement 2.",
+    "outputType": "text"
+  },
+  {
+    "requirementId": 3,
+    "requirementName": "Requirement 3",
+    "requirementDesc": "This is the description for requirement 3",
+    "prompt_text": "Please evaluate the document based on requirement 3.",
+    "supplementaryInfo": "Additional context or guidelines for requirement 3.",
+    "outputType": "number"
+  }
+]
