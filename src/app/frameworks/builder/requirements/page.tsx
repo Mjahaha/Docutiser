@@ -3,7 +3,14 @@
 import { OutputType } from "@/app/api/requirements/route";
 import Link from "next/link";
 import { useState } from 'react';
-import { saveRequirement } from "@/utils/requirements";
+
+interface RequirementFormData {
+    requirementName: string;
+    requirementDesc: string;
+    promptText: string;
+    supplementaryInfo: string;
+    outputType: OutputType;
+}
 
 export default function RequirementEditor() {
 
@@ -122,4 +129,27 @@ export default function RequirementEditor() {
       </div>
     </div>
   );
+}
+
+export async function saveRequirement(requirementData: RequirementFormData) {
+    try {
+        const response = await fetch('/api/requirements', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requirementData),
+        });
+        
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('Failed to save requirement');
+        }
+        
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('Error saving requirement:', error);
+        throw error;
+    }
 }
