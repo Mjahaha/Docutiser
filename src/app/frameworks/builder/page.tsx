@@ -67,7 +67,7 @@ export default function FrameworkBuilder() {
   return (
     <div className="p-8 space-y-8">
       <div>
-        <Link href="/frameworks" className="border px-4 py-2 rounded-md">
+        <Link href="/frameworks" className="border px-4 py-2 ">
           ← Back to Frameworks
         </Link>
       </div>
@@ -77,7 +77,7 @@ export default function FrameworkBuilder() {
       <div>
         <label className="block mb-1">Name</label>
         <input
-          className="border w-full p-2 rounded-md"
+          className="border w-full p-2 "
           placeholder="Framework name"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -86,7 +86,7 @@ export default function FrameworkBuilder() {
 
       <div>
         <label className="block mb-1">Description</label>
-        <textarea className="border w-full p-2 rounded-md" placeholder="Framework description"
+        <textarea className="border w-full p-2 " placeholder="Framework description"
         value={description}
         onChange={(e) => setDescription(e.target.value)} />
       </div>
@@ -95,7 +95,7 @@ export default function FrameworkBuilder() {
       <div className="space-y-3">
         <h2 className="font-semibold">Requirements</h2>
 
-        <ul className="border p-4 space-y-2 rounded-md min-h-[3rem]">
+        <ul className="border p-4 space-y-2  min-h-[3rem]">
           {selectedRequirements.length === 0 && (
             <li className="text-sm text-gray-500">No requirements selected yet.</li>
           )}
@@ -103,13 +103,13 @@ export default function FrameworkBuilder() {
             <li key={r.requirementId} className="flex justify-between items-center">
               <span>{r.requirementName}</span>
               <div className="space-x-2">
-                <Link href={`/frameworks/builder/requirements/${r.requirementId}`} className="border px-2 py-1 rounded-md">
+                <Link href={`/frameworks/builder/requirements/${r.requirementId}`} className="border px-2 py-1 ">
                   View
                 </Link>
-                <Link href={`/frameworks/builder/requirements/${r.requirementId}/edit`} className="border px-2 py-1 rounded-md">
+                <Link href={`/frameworks/builder/requirements/${r.requirementId}/edit`} className="border px-2 py-1 ">
                   Edit
                 </Link>
-                <button onClick={() => removeReq(r.requirementId)} className="border px-2 py-1 rounded-md">
+                <button onClick={() => removeReq(r.requirementId)} className="border px-2 py-1 ">
                   Remove
                 </button>
               </div>
@@ -121,7 +121,7 @@ export default function FrameworkBuilder() {
           <label className="sr-only" htmlFor="reqSelect">Add requirement</label>
           <select
             id="reqSelect"
-            className="border rounded-md p-2 flex-1"
+            className="border  p-2 flex-1"
             value={selectValue}
             onChange={(e) => {
               const value = e.target.value;
@@ -138,7 +138,7 @@ export default function FrameworkBuilder() {
               {loading
                 ? "Loading…"
                 : availableOptions.length === 0
-                ? "No more requirements"
+                ? "All requirements have been selected"
                 : "Select a requirement"}
             </option>
             {availableOptions.map((r) => (
@@ -175,7 +175,7 @@ export default function FrameworkBuilder() {
               setSaving(false);
             }
           }}
-          className="border px-4 py-2 rounded-md disabled:opacity-50"
+          className="border px-4 py-2  disabled:opacity-50"
           disabled={saving || !name.trim() || selectedRequirements.length === 0}
           title={
               !name.trim() || selectedRequirements.length === 0
