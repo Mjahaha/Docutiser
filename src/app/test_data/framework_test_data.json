@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "Hugh Jackman Letter Assessment",
+    "description": "Description for Hugh Jackman Letter Assessment",
+    "requirements": [
+      {
+        "requirementId": 1,
+        "requirementName": "Requirement 1",
+        "requirementDesc": "This is the description for requirement 1"
+      },
+      {
+        "requirementId": 2,
+        "requirementName": "Requirement 2",
+        "requirementDesc": "This is the description for requirement 2"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Framework 2",
+    "description": "Description for assessment 2",
+    "requirements": [
+      {
+        "requirementId": 1,
+        "requirementName": "Requirement 1",
+        "requirementDesc": "This is the description for requirement 1"
+      },
+      {
+        "requirementId": 2,
+        "requirementName": "Requirement 2",
+        "requirementDesc": "This is the description for requirement 2"
+      },
+      {
+        "requirementId": 3,
+        "requirementName": "Requirement 3",
+        "requirementDesc": "This is the description for requirement 3"
+      }
+    ]
+  }
+]

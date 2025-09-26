@@ -4,7 +4,8 @@ import { getAssessment } from "@/utils/assessments";
 
 export default async function AssessmentDetail({params,}: { params: { assessment_id: string } }) 
 {
-  const id = Number(params.assessment_id);
+  const { assessment_id } = await params;
+  const id = Number(assessment_id);
   if (Number.isNaN(id)) notFound();
   let assessment;
   try {
@@ -36,8 +37,8 @@ export default async function AssessmentDetail({params,}: { params: { assessment
         <h2 className="font-semibold">Results</h2>
         <ul className="border p-4 space-y-2">
           {assessment.results.map((result) => (
-            <li key={result.requirement_id} className="flex justify-between">
-              <span>{result.requirement_name}</span>
+            <li key={result.requirementId} className="flex justify-between">
+              <span>{result.requirementName}</span>
               <span>{result.passed ? '✅ Pass' : '❌ Fail'}</span>
             </li>
           ))}
