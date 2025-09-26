@@ -39,7 +39,7 @@ export default function Home() {
           <p className="text-center text-sm text-gray-600">
             Interpret and check legislation against your documents.
           </p>
-          <Link href="/nsw-legislation" className="border px-4 py-2">
+          <Link href="#" className="border px-4 py-2">
             Open Interpreter
           </Link>
         </div>
@@ -50,7 +50,7 @@ export default function Home() {
           <p className="text-center text-sm text-gray-600">
             Manage your profile, billing, and app preferences.
           </p>
-          <Link href="/settings" className="border px-4 py-2">
+          <Link href="#" className="border px-4 py-2">
             Go to Settings
           </Link>
         </div>

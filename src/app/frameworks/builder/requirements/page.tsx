@@ -61,7 +61,7 @@ export default function RequirementEditor() {
           <option value="decimal">Decimal Number</option>
           <option value="date">Date</option>
           <option value="currency">Currency</option>
-          <option value="text">Text</option>
+          <option value="text">Selection</option>
         </select>
       </div>
 

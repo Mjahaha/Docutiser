@@ -24,7 +24,7 @@ export default function FrameworkBuilder() {
         <h2 className="font-semibold">Requirements</h2>
         <ul className="border p-4 space-y-2">
           <li className="flex justify-between items-center">
-            <span>Requirement 1</span>
+            <span>Checking for Wolverine</span>
             <div className="space-x-2">
               <Link href="/frameworks/builder/requirements" className="border px-2 py-1">
                 View
