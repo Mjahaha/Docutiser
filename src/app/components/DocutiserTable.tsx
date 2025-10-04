@@ -63,7 +63,7 @@ export default function DocutiserTable ( { data, columns } : TableProps ) {
   )
 
   return (
-    <table className="w-full border p-4 space-y-2">
+    <table className="w-full border p-4 space-y-2 mt-5">
       {createHeader()}
       {createBody()}
     </table>
