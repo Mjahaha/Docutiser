@@ -1,8 +1,7 @@
 "use client";
 import { ReactNode } from "react";
-import Link from "next/link";
 
-interface Column {
+export interface Column {
   label: string,
   key: string
 }
@@ -63,7 +62,7 @@ export default function DocutiserTable ( { data, columns } : TableProps ) {
   )
 
   return (
-    <table className="w-full border p-4 space-y-2">
+    <table className="w-full border p-4 space-y-2 mt-5">
       {createHeader()}
       {createBody()}
     </table>

@@ -1,9 +1,33 @@
 import Link from "next/link";
-import { getAssessment } from "@/utils/assessments";
+import { getAssessment, Assessment } from "@/utils/assessments";
+import { ReactNode } from "react";
+import DocutiserTable, { Column } from "../components/DocutiserTable";
 
 export default async function AssessmentHistory() {
   const assessments = [getAssessment(1), getAssessment(2)];
   const assessmentData = await Promise.all(assessments);
+
+  // Sorts our the data for the DocutiserTable component 
+  const assessmentColumnsForTable : Column[] = [
+    { label: 'Assessment Name', key: 'name'},
+    { label: 'Assessment Description', key: 'description'},
+    { label: ' ', key: 'link'},
+  ]
+  interface AssessmentDataForTable extends Assessment {
+    link?: ReactNode
+  }
+  const assessmentDataForTable : AssessmentDataForTable[] = assessmentData.map( (assessment : Assessment) => ({
+    ...assessment, 
+    link: (
+      <Link 
+        href={`/assessments/details/${assessment.id}`}
+        className="border px-4 py-2 mx-4"
+      >
+        View
+      </Link>
+    )
+  }));
+  console.log(assessmentDataForTable)
 
   function renderAssessmentInHistory(assessment: { id: number; name: string; framework: string }) 
     {
@@ -37,6 +61,8 @@ export default async function AssessmentHistory() {
       <div>
         <Link href="/assessments/new" className="border px-4 py-2">+ New </Link>
       </div>
+      <DocutiserTable data={assessmentDataForTable} columns={assessmentColumnsForTable} />
+
     </div>
   );
 }
