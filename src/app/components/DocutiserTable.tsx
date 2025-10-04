@@ -1,8 +1,7 @@
 "use client";
 import { ReactNode } from "react";
-import Link from "next/link";
 
-interface Column {
+export interface Column {
   label: string,
   key: string
 }

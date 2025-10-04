@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Assessment 1",
+    "name": "HJ awesome fan letter",
     "description": "Description for assessment 1",
     "framework": "Hugh Jackman Letter Assessment",
     "summary": "The document was up to par in several areas such as ....",
@@ -20,7 +20,7 @@
   },
   {
     "id": 2,
-    "name": "Assessment 2",
+    "name": "HJ fan letter about cool stuff",
     "description": "Description for assessment 2",
     "framework": "Hugh Jackman Letter Assessment",
     "summary": "Strong performance in communication areas with room for improvement in technical specifications ....",

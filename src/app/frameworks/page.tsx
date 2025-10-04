@@ -2,12 +2,7 @@ import Link from "next/link";
 import { getFrameworks, Framework } from "@/utils/frameworks";
 import { FrameworkList } from "./FrameworkList";
 import { ReactNode } from "react";
-import DocutiserTable from "../components/DocutiserTable";
-
-interface Column {
-  label: string,
-  key: string
-}
+import DocutiserTable, { Column} from "../components/DocutiserTable";
 
 export default async function Frameworks() {
   const frameworkData = await getFrameworks();
@@ -48,6 +43,8 @@ export default async function Frameworks() {
       <Link href="/frameworks/builder" className="border px-4 py-2">
         + New Framework
       </Link>
+      <h2></h2>
+      <h2>New DocutiserTable component</h2>
       <DocutiserTable data={frameworksForTable} columns={frameworkColumnsForTable} />
       
 
